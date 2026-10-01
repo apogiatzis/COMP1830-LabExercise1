@@ -6,7 +6,7 @@ w3 = Web3(Web3.HTTPProvider(rpc_node))
 account = "0xEeC84548aAd50A465963bB501e39160c58366692"
 
 def get_balance(address):
-    return w3.eth.getBalance(w3.toChecksumAddress(address))
+    return w3.eth.get_balance(Web3.to_checksum_address(address))
 
 print(f"Balance for {account}:")
 print(get_balance(account))
