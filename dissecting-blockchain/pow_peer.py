@@ -6,6 +6,8 @@ from pow_block import PoWBlockchain as Blockchain
 from xmlrpc.server import SimpleXMLRPCServer
 from xmlrpc.client import ServerProxy
 
+from peer_ui import attach_visualiser
+
 
 blockchain_state = Blockchain()
 known_peers = []
@@ -151,7 +153,9 @@ def start_peer(port):
 
 def run(port):
     server = start_peer(port)
-    return PeerShell(server).cmdloop()
+    shell = PeerShell(server)
+    attach_visualiser(server, shell, globals())  # lets visualiser.py show and control this peer
+    return shell.cmdloop()
 
 
 if __name__ == "__main__":

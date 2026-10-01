@@ -2,6 +2,10 @@
   "name": "COMP1830 Lab",
   "image": "mcr.microsoft.com/devcontainers/python:3.12",
   "postCreateCommand": "pip install -r requirements.txt",
+  "portsAttributes": {
+    "8000": { "label": "Lab Visualiser", "onAutoForward": "openBrowser" }
+  },
+  "otherPortsAttributes": { "onAutoForward": "silent" },
   "customizations": {
     "vscode": {
       "extensions": ["ms-python.python"]

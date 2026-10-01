@@ -2,7 +2,6 @@ import hashlib
 
 from dataclasses import dataclass
 from datetime import datetime
-from re import T
 from typing import List
 
 

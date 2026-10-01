@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Lab Visualiser · COMP1830</title>
+  <link rel="stylesheet" href="style.css">
+  <script type="importmap">
+    { "imports": { "three": "./vendor/three.module.min.js", "three/addons/": "./vendor/" } }
+  </script>
+  <script type="module" src="app.js"></script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <span>University of Greenwich</span><span class="sep">·</span><span>COMP1830 Blockchain for Fintech</span>
+    </div>
+    <div class="mode" id="mode" role="group" aria-label="Which peers to show">
+      <button type="button" data-mode="basic">No consensus</button>
+      <button type="button" data-mode="pow">Proof-of-Work</button>
+    </div>
+    <div class="app-name">Lab Visualiser</div>
+  </header>
+
+  <main>
+    <aside class="card controls">
+      <h2>Controls</h2>
+
+      <label class="field-label" for="peer-select">Acting as</label>
+      <select id="peer-select"></select>
+
+      <div class="group">
+        <label class="field-label" for="hello-port">Connect to peer</label>
+        <div class="row">
+          <input id="hello-port" inputmode="numeric" placeholder="Port, e.g. 8002">
+          <button type="button" class="btn" id="btn-hello">Connect</button>
+        </div>
+      </div>
+
+      <div class="group">
+        <label class="field-label" for="append-data">Append block</label>
+        <div class="row">
+          <input id="append-data" placeholder="Block data">
+          <button type="button" class="btn" id="btn-append">Append</button>
+        </div>
+      </div>
+
+      <div class="group buttons">
+        <button type="button" class="btn primary" id="btn-broadcast">Broadcast</button>
+        <button type="button" class="btn" id="btn-validate">Validate</button>
+      </div>
+
+      <div class="group">
+        <label class="field-label" for="cmd">Peer command</label>
+        <div class="row">
+          <input id="cmd" class="mono" placeholder="e.g. setdata 2#Is very" autocomplete="off" spellcheck="false">
+          <button type="button" class="btn" id="btn-cmd">Run</button>
+        </div>
+      </div>
+
+      <div class="output" id="output" hidden>
+        <div class="output-cmd mono" id="output-cmd"></div>
+        <pre class="mono" id="output-text"></pre>
+      </div>
+
+      <div class="group mining" id="mining" hidden>
+        <h3>Proof-of-Work</h3>
+        <dl>
+          <dt>Difficulty</dt><dd id="pow-difficulty" title="Set by prefix in PoWBlock.valid (pow_block.py)">–</dd>
+          <dt>Work per block</dt><dd id="pow-work" title="On average, 16 ^ difficulty hashes">–</dd>
+        </dl>
+        <div class="mining-live" id="mining-live"></div>
+      </div>
+    </aside>
+
+    <section class="stage" id="stage">
+      <div class="empty" id="empty" hidden></div>
+      <div class="hint">Drag to rotate · scroll to zoom · click a peer or a block</div>
+    </section>
+
+    <aside class="side">
+      <div class="card inspector" id="inspector" hidden></div>
+      <div class="card activity">
+        <h2>Activity</h2>
+        <ol id="activity"></ol>
+      </div>
+    </aside>
+  </main>
+
+  <footer class="status">
+    <div id="status-chain"></div>
+    <div id="status-network"></div>
+    <div id="status-timer"></div>
+  </footer>
+</body>
+</html>
